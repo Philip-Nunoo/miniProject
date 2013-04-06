@@ -60,8 +60,8 @@
             
 <div id="messages">
     <h3>Messages</h3>
-    Create New Message<br/>
-    View sent messages<br/>
+    <a href="newMessage.php">Create New Message</a><br/>
+    <a href="viewMessages.php">View all messages</a><br/>
     View received messages<br/>
     View deleted message<br/>
 </div>

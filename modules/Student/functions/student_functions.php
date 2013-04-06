@@ -70,7 +70,7 @@ include_once '../../../bin/functions.php';
     }
     
     function getProjects($project_id = FALSE) {
-        $student_id = $_SESSION['user_id'];
+        $student_id = $_SESSION['super_id'];
         if ($project_id){
             $query = "SELECT * FROM projects WHERE id='$project_id'";
         } else {
@@ -79,6 +79,40 @@ include_once '../../../bin/functions.php';
         
         $result = mysql_query($query) or die(mysql_error());
         
+        return $result;
+    }
+    
+    function newMessage($subject,$message) {
+        $query = "INSERT INTO message_doc (subject, message_content)
+                  VALUES ('$subject', '$message')";
+        
+        mysql_query($query) or die(mysql_error());
+        $message_id = mysql_insert_id();
+        $supervisors_id = $_SESSION['super_id'];        
+        $student_id = $_SESSION['user_id'];
+        $query = "INSERT INTO messages (student_id, supervisors_id, message_id)
+                  VALUES ($student_id,$supervisors_id,$message_id)";
+        mysql_query($query) or die(mysql_error());
+        
+        return TRUE;
+    }
+    
+    function getAllMessages(){
+        $student_id = $_SESSION['user_id'];
+        
+        $query = "SELECT * FROM message_doc, messages
+                 WHERE messages.student_id = $student_id";
+        $results = mysql_query($query) or die(mysql_error());
+        
+        return $results;
+    }
+    
+    function getSupervisorName($supervisor_id) {
+        $query = "SELECT firstName, lastName, email FROM supervisors 
+                  WHERE supervisor_id = $supervisor_id";
+        
+        $result = mysql_query($query) or die(mysql_error());
+        $result = mysql_fetch_array($result);
         return $result;
     }
 ?>
