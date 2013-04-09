@@ -5,8 +5,8 @@ and open the template in the editor.
 <?php include_once './includes/header.php';?>
         <fieldset>
             <legend>Add Student</legend>
+            <form action="./scripts/addStudent.php" method="POST">
             <table>
-                <form action="http://localhost/miniproject/scripts/addStudent.php" method="POST">
                     <tr><td>First Name:</td><td><input type="text" name="firstname"/></td></tr>
                     <tr><td>Last Name:</td><td><input type="text" name="lastname"/></td></tr>
                     <tr><td>Email:</td><td><input type="email" name="email"/></td></tr>

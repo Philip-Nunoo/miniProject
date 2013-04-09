@@ -39,7 +39,11 @@ and open the template in the editor.
             <input type="text" value="Search Item"/><br/>
             <p>
                 <a href="addStudent.php">Create/Add Student</a><br/>
-                View All Students
+                <a href="viewAllStudents.php">View All Students</a><br/>
+            </p>
+            <p>
+                Create Message</br>
+                <a href="viewMessages.php">View All Messages</a></br>
             </p>
         </div>
         <div id="mainArea">

@@ -165,4 +165,19 @@ function createSalt()
     $string = md5(uniqid(rand(), true));
     return substr($string, 0, 3);
 }
+    
+function getSupervisorAddress($supervisor_id) {
+    $query = "SELECT email FROM supervisors WHERE supervisor_id = $supervisor_id";
+    $result = mysql_query($query) or die("Get Supervisor Error: " .mysql_error());
+
+    $row = mysql_fetch_array($result);
+    return $row['email'];
+}
+
+function getStudentAddress($student_id) {
+    $query = "SELECT email FROM student WHERE id = $student_id";
+    $result = mysql_query($query) or die("Get Student sql error: " .mysql_error());
+    $row = mysql_fetch_array($result);
+    return $row['email'];
+}
 ?>

@@ -70,7 +70,7 @@ include_once '../../../bin/functions.php';
     }
     
     function getProjects($project_id = FALSE) {
-        $student_id = $_SESSION['super_id'];
+        $student_id = $_SESSION['user_id'];
         if ($project_id){
             $query = "SELECT * FROM projects WHERE id='$project_id'";
         } else {
@@ -82,26 +82,30 @@ include_once '../../../bin/functions.php';
         return $result;
     }
     
-    function newMessage($subject,$message) {
+    function newMessage($subject,$message,$from, $to) {
         $query = "INSERT INTO message_doc (subject, message_content)
                   VALUES ('$subject', '$message')";
         
-        mysql_query($query) or die(mysql_error());
+        mysql_query($query) or die("new Message(1): " .mysql_error());
         $message_id = mysql_insert_id();
-        $supervisors_id = $_SESSION['super_id'];        
-        $student_id = $_SESSION['user_id'];
-        $query = "INSERT INTO messages (student_id, supervisors_id, message_id)
-                  VALUES ($student_id,$supervisors_id,$message_id)";
-        mysql_query($query) or die(mysql_error());
+        
+        $query = "INSERT INTO messages (from_address, to_address, message_id)
+                  VALUES ('$from' ,'$to' , $message_id)";
+        mysql_query($query) or die("new Message(2): " . mysql_error());
         
         return TRUE;
     }
     
     function getAllMessages(){
         $student_id = $_SESSION['user_id'];
+        $student_address = getStudentAddress($student_id);
         
-        $query = "SELECT * FROM message_doc, messages
-                 WHERE messages.student_id = $student_id";
+        $query = "SELECT * 
+                  FROM message_doc a
+                  JOIN messages b
+                  ON a.id = b.message_id
+                  WHERE b.from_address = 'ketay99@gmail.com'";
+        //$query = "SELECT * FROM messages WHERE from_address = 'ketay99@gmail.com'";
         $results = mysql_query($query) or die(mysql_error());
         
         return $results;

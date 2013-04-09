@@ -21,7 +21,7 @@ if(isset($_GET['error'])){
 <h3>Viewing all created documents.</h3>
 <p><input type="text" value="Search for file"/></p>
 <?php $results = getFiles(); $count = 0;?>
-<table class="table">
+<table class="table" cellspacing="0">
     <tr><th></th><th>Document Name</th><th>Date Created</th><th>Date Modified</th><th>Submission status</th><th></th></tr>
     <?php while ($result = mysql_fetch_array($results, MYSQL_ASSOC) ):?>
     <tr class="row<?php echo ($count % 2 == 0 ? '0' : '1'); ?>">

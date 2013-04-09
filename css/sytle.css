@@ -21,12 +21,9 @@ html, body
 
 .table
 {
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
+    /** Gradient table **/
     width: 100%;
-    border: 1px solid #f0f0f0;
-    background-color: #888;
+    /*background-color: #888;*/
 }
 
 .table th
@@ -36,22 +33,18 @@ html, body
 }
 .table td, .table th
 {
-    padding: 2px 6px;
+    padding: 1px 6px;
 }
 .row0 {
     background-color: #ffffff;
 }
 
-tr.row0:hover {
-    background-color: #ffff00;
+tr.row0:hover, tr.row1:hover {
+    background-color: #B8C6D7;
 }
 
 .row1 {
     background-color: #f0f0f0;
-}
-
-tr.row1:hover {
-    background-color: #ffff00;
 }
 
 #login
